@@ -16,6 +16,8 @@ export default function SignUp() {
     setError('');
     setLoading(true);
 
+    const cleanUsername = username.toLowerCase().trim();
+
     const { data, error: authError } = await supabase.auth.signUp({
       email,
       password,
@@ -29,13 +31,17 @@ export default function SignUp() {
 
     const user = data.user;
 
+    if (!user) {
+      setError('Check your email to confirm your account, then log in.');
+      setLoading(false);
+      return;
+    }
+
     const { error: profileError } = await supabase
       .from('profiles')
       .insert({
         id: user.id,
-        username: username.toLowerCase().trim(),
-        email: email,
-        created_at: new Date().toISOString(),
+        username: cleanUsername,
       });
 
     if (profileError) {
@@ -44,7 +50,7 @@ export default function SignUp() {
       return;
     }
 
-    router.push(`/${username.toLowerCase().trim()}`);
+    router.push(`/${cleanUsername}`);
   };
 
   return (
@@ -110,6 +116,7 @@ export default function SignUp() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              minLength={6}
               style={inputStyle}
             />
 
@@ -141,17 +148,6 @@ export default function SignUp() {
                 cursor: loading ? 'not-allowed' : 'pointer',
                 opacity: loading ? 0.7 : 1,
                 boxShadow: '0 0 20px rgba(127, 127, 255, 0.3)',
-                transition: 'transform 0.15s ease, box-shadow 0.15s ease',
-              }}
-              onMouseEnter={(e) => {
-                if (!loading) {
-                  e.target.style.transform = 'translateY(-1px)';
-                  e.target.style.boxShadow = '0 0 28px rgba(127, 127, 255, 0.45)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 0 20px rgba(127, 127, 255, 0.3)';
               }}
             >
               {loading ? 'Creating...' : 'Sign Up'}
@@ -188,5 +184,4 @@ const inputStyle = {
   fontSize: '1rem',
   boxSizing: 'border-box',
   outline: 'none',
-  transition: 'border-color 0.15s ease',
 };
