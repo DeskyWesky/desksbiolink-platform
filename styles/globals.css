@@ -1,1 +1,7 @@
-
+.make-own-btn {
+  display: block;
+  margin-top: 16px;
+  color: #aaa;
+  font-size: 13px;
+  text-decoration: underline;
+}
