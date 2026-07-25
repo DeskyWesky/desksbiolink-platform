@@ -1,3 +1,4 @@
+$json = @'
 {
   "name": "desksbiolink-platform",
   "version": "0.1.0",
@@ -23,3 +24,5 @@
     "tailwindcss": "^3.4.4"
   }
 }
+'@
+[System.IO.File]::WriteAllText("$PWD\package.json", $json)
