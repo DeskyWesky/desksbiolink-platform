@@ -1,3 +1,51 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  background: #111;
+}
+
+.card {
+  background: rgba(20, 20, 20, 0.65);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  color: white;
+  width: 320px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #fff2;
+  margin-bottom: 16px;
+}
+
+.username {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.bio {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.links a {
+  display: block;
+  color: #6cf;
+  text-decoration: underline;
+  padding: 6px;
+}
+
 .make-own-btn {
   display: block;
   margin-top: 16px;
