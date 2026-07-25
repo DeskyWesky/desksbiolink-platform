@@ -90,6 +90,8 @@ body {
 
 .make-own-btn:hover {
   color: #a8a8ff;
+}
+
 .edit-form {
   display: flex;
   flex-direction: column;
