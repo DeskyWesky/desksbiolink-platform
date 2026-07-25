@@ -13,6 +13,7 @@
     "react": "^18",
     "react-dom": "^18",
     "@tsparticles/react": "^3.0.0",
+    "@supabase/supabase-js": "^2.x.x",
     "@tsparticles/slim": "^3.0.0"
   },
   "devDependencies": {
